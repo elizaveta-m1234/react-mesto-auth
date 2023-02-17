@@ -1,0 +1,7 @@
+.profile__avatar-btn {
+  background-color: transparent;
+  border: none;
+  z-index: 2;
+  position: relative;
+  cursor: pointer;
+}

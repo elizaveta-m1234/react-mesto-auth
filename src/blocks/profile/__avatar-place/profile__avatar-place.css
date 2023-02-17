@@ -1,0 +1,26 @@
+/*вспоминаем третью ПР*/
+.profile__avatar-place {
+  position: relative;
+}
+
+.profile__avatar-place::before {
+  content: '';
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__avatar-place:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.profile__avatar-place:hover .profile__hover {
+  opacity: 1;
+}

@@ -1,0 +1,19 @@
+.popup__error {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    background-color: #fff;
+    border: none;
+    min-height: 30px;
+    display: block;
+    padding-top: 5px;
+    visibility: hidden;
+}
+
+.popup__error:last-of-type {
+    margin: 0 0 15px 0;
+    /*значение подобрано с использованием Pixel Perfect*/
+}

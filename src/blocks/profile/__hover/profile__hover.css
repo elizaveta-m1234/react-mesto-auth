@@ -1,0 +1,9 @@
+.profile__hover {
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
