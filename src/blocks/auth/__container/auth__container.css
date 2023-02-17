@@ -1,0 +1,7 @@
+.auth__container {
+  max-width: 357px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

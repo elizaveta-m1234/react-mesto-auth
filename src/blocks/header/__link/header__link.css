@@ -1,0 +1,12 @@
+.header__link {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height, or 122% */
+    text-align: right;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}

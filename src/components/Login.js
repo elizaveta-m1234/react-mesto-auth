@@ -29,7 +29,7 @@ function Login({ handleSignin }) {
           <form className="auth__form" onSubmit={handleSubmit}>
             <input className="auth__input" name="email" value={userData.email} onChange={handleChange} type="email" placeholder="Email"/>
             <input className="auth__input" name="password" value={userData.password} onChange={handleChange} type="password" placeholder="Пароль"/>
-            <button className="auth__button" type="submit">Войти</button>
+            <button className="auth__button button" type="submit">Войти</button>
           </form>
       </div>
     </div>

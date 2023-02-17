@@ -3,7 +3,7 @@ import fail from '../images/fail.svg';
 
 function InfoTooltip({ isSuccess, isFail, onClose }) {
   return (
-    <div className={ isSuccess ? "popup popup_is-opened" : isFail ? "popup popup_is-opened" : "popup"}>
+    <div className= { isSuccess ? "popup popup_is-opened" : isFail ? "popup popup_is-opened" : "popup" }>
       <div className="popup__content">
         <button onClick={onClose} className="popup__close button" aria-label="Закрыть" type="button"></button>
         <img className="popup__image" src={isSuccess ? success : fail} />

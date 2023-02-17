@@ -15,13 +15,13 @@ function Header({ loggedIn, userData }) {
 
       {loggedIn ? (
         <div className="header__nav">
-          <p>{userData.email}</p>
-          <Link className="header__link" to='/sign-in' onClick={handleSignout}>Выйти</Link>
+          <p className="header__email">{userData.email}</p>
+          <Link className="header__link-exit button" to='/sign-in' onClick={handleSignout}>Выйти</Link>
         </div>
       ) : location.pathname === "/sign-up" ? (
-          <Link className="header__link" to='/sign-in' onClick={handleSignout}>Войти</Link>
+          <Link className="header__link button" to='/sign-in' onClick={handleSignout}>Войти</Link>
       ) : (
-        <Link className="header__link" to='/sign-up' onClick={handleSignout}>Регистрация</Link>
+        <Link className="header__link button" to='/sign-up' onClick={handleSignout}>Регистрация</Link>
       )} 
     </header>
   )
