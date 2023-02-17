@@ -31,6 +31,7 @@ function App() {
   const [isFail, setIsFail] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState({ email: "" });
+  const [userEmail, setUserEmail] = useState(""); //это два разных стейта? наверное... загадочно...
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
@@ -126,6 +127,10 @@ function App() {
   function handleLogin() {
     setLoggedIn(true);
   }
+
+  function handleLogut() {
+    setLoggedIn(false);
+  }
   
   function handleSignup(password, email) {
     auth.register(password, email)
@@ -145,6 +150,7 @@ function App() {
           localStorage.setItem("jwt", res.token);
           handleLogin();
           setUserData({ email: res.email });
+          setUserEmail( userData.email ); //это странно, но это работает
           navigate('/mesto', { replace: true })
         }
       })
@@ -170,7 +176,7 @@ function App() {
       auth.getContent(token)
         .then((res) => {
           handleLogin();
-          setUserData({ email: res.email });
+          setUserData({ email: setUserEmail(res.data.email) }); //это странно, но это работает-2 о_О
           navigate('/mesto');
         })
     }
@@ -180,7 +186,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header loggedIn={loggedIn} userData={userData} />
+        <Header loggedIn={loggedIn} userEmail={userEmail} handleLogut={handleLogut} />
         <Routes>
           <Route path='/' element={loggedIn ? <Navigate to="/mesto" replace /> : <Navigate to="/sign-up" replace />} />
           <Route path='/sign-up'

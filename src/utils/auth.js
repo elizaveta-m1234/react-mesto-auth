@@ -31,7 +31,8 @@ class Auth {//по образцу api.js
         email
       })
     })
-    .then(this._getResponseData)
+      .then(this._getResponseData)
+      .then(data => data)
   }
 
   getContent(token) {
@@ -42,7 +43,8 @@ class Auth {//по образцу api.js
         "Authorization" : `Bearer ${token}`
       }
     })
-    .then(this._getResponseData)
+      .then(this._getResponseData)
+      .then(data => data)
   }
 }
 

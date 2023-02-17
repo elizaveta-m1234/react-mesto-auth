@@ -2,11 +2,12 @@ import { Link, useLocation } from 'react-router-dom'
 import logo from '../images/logo.svg'
 //дополнительную мобильную версию не будем делать
 
-function Header({ loggedIn, userData }) {
+function Header({ loggedIn, userEmail, handleLogut }) {
   const location = useLocation();
 
   function handleSignout() {
     localStorage.removeItem("jwt");
+    handleLogut();
   }
 
   return (
@@ -15,7 +16,7 @@ function Header({ loggedIn, userData }) {
 
       {loggedIn ? (
         <div className="header__nav">
-          <p className="header__email">{userData.email}</p>
+          <p className="header__email">{userEmail}</p>
           <Link className="header__link-exit button" to='/sign-in' onClick={handleSignout}>Выйти</Link>
         </div>
       ) : location.pathname === "/sign-up" ? (

@@ -6,6 +6,7 @@
     line-height: 22px;
     /* identical to box height, or 122% */
     text-align: right;
-  
     color: #FFFFFF;
+    margin: 0;
+    padding: 0;
 }
