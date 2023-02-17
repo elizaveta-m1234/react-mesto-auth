@@ -30,7 +30,6 @@ function App() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFail, setIsFail] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ email: "" });
   const [userEmail, setUserEmail] = useState(""); //это два разных стейта? наверное... загадочно...
 
   useEffect(() => {
@@ -42,7 +41,7 @@ function App() {
     .catch((err)=>{ //попадаем сюда если один из промисов завершаться ошибкой
       console.log(err);
     })
-  }, []);
+  }, [loggedIn]);
 // Открываем попапы
   function handleEditProfileClick() {
     setIsEditProfilePopupOpened(true);
@@ -149,14 +148,13 @@ function App() {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           handleLogin();
-          setUserData({ email: res.email });
-          setUserEmail( userData.email ); //это странно, но это работает
+          setUserEmail(userData.email);
           navigate('/mesto', { replace: true })
         }
       })
       .catch((err) => {
         console.log(err);
-        //только для регистрации? setIsFail(true);
+        setIsFail(true);
       })
   }
 
@@ -176,12 +174,14 @@ function App() {
       auth.getContent(token)
         .then((res) => {
           handleLogin();
-          setUserData({ email: setUserEmail(res.data.email) }); //это странно, но это работает-2 о_О
+          setUserEmail(res.data.email);
           navigate('/mesto');
+        })
+        .catch((err) => {
+          console.log(err);
         })
     }
   }, [])
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -193,7 +193,6 @@ function App() {
             element={
               <>
                 <Register handleSignup={handleSignup} />
-                <InfoTooltip isSuccess={isSuccess} isFail={isFail} onClose={closeResponsePopup} />
               </>
             } />
           <Route path='/sign-in'
@@ -226,6 +225,7 @@ function App() {
               </>
           } />
         </Routes>
+        <InfoTooltip isSuccess={isSuccess} isFail={isFail} onClose={closeResponsePopup} />
       </div>
     </CurrentUserContext.Provider>
       
