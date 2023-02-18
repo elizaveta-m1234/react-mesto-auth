@@ -30,18 +30,22 @@ function App() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFail, setIsFail] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState(""); //это два разных стейта? наверное... загадочно...
+  const [userEmail, setUserEmail] = useState(""); 
 
+  
   useEffect(() => {
-    Promise.all([api.getProfile(), api.getInitialCards()])
-    .then(([profile, cards])=>{ //попадаем сюда когда оба промиса будут выполнены
-      setCurentUser(profile)
-      setCards(cards)
-    })
-    .catch((err)=>{ //попадаем сюда если один из промисов завершаться ошибкой
-      console.log(err);
-    })
+    if (loggedIn) {
+      Promise.all([api.getProfile(), api.getInitialCards()])
+        .then(([profile, cards])=>{ //попадаем сюда, когда оба промиса будут выполнены
+          setCurentUser(profile)
+          setCards(cards)
+        })
+        .catch((err)=>{ //попадаем сюда если один из промисов будет завершаться ошибкой
+          console.log(err);
+        })
+    } 
   }, [loggedIn]);
+
 // Открываем попапы
   function handleEditProfileClick() {
     setIsEditProfilePopupOpened(true);
